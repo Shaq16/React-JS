@@ -1,9 +1,14 @@
+import NewFunc from "./new"
 
 function App() {
 
   return (
-    <h1>React with Vite|Shaq</h1>
-
+    <>
+        <NewFunc/>
+        <h1>Shakthi Jashwanth</h1>
+        <h2>SAAS</h2>
+        
+    </>
   )
 }
 
