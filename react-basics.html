@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="root"></div>
+  </body>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      const Root = document.querySelector('.root');
+      const div = (
+        <div>
+        <p>Hello,Welcome to React JS Course</p>
+        <button>Press here</button>
+        </div>
+    )
+      ReactDOM.createRoot(Root).render(div);
+    </script>
+</html>
