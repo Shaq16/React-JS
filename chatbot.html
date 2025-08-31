@@ -16,7 +16,7 @@
         function ChatInput({ chatMessages, setChatMessage }){
             const [inputText,setInputText]=React.useState("")
             
-            function saveInputText(e){
+            function saveInputText(e){  
                 setInputText(e.target.value) // fixed: use parameter e, not event
             }
 
