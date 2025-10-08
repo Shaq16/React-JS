@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="root"></div>
+  </body>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        function App(){
+            const socks= 10
+            const tShirt=8
+            const productCost=(socks + 2 * tShirt)
+            const shippingCost=5
+            const total = productCost+shippingCost
+
+            const day = dayjs().format("MMMM D")
+            const [time,setTime]= React.useState(dayjs().format("HH:mm:ss"))
+            React.useEffect(()=>{
+                setInterval(()=>{
+                    setTime(dayjs().format("HH:mm:ss"))
+
+                },500)
+            
+            },[])
+            return(
+                <>
+                    <button>Good Job!</button>
+                    <p>My name is Shakthi</p>
+                    <div>
+                        <p>Cotton Socks</p>
+                        <p>Price:$10</p>
+                        <button>Add to Cart</button>
+                    </div>
+                    <div>
+                        <p>Product Cost: ${productCost}</p>
+                        <p>Shipping Cost: ${shippingCost}</p>
+                        <p>Total Cost:${total}</p>
+                        <button>Place your order</button>
+                    </div>
+                    <p>Today is {day}</p>
+                    <p>Current Time:{time}</p>
+                </>
+            );
+        }
+      ReactDOM.createRoot(document.querySelector(".root")).render(<App />);
+    </script>
+</html>

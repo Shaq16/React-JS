@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Toggle Button</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .on-button {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 20px;
+        transition: background-color 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="root"></div>
+  </body>
+
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+  <script type="text/babel">
+    function App() {
+      const [buttonOn, setButtonOn] = React.useState(false);
+
+      function buttonClick() {
+        setButtonOn(!buttonOn);
+      }
+
+      return (
+        <div
+          style={{
+            backgroundColor: buttonOn ? "#1A8755" : "red",
+          }}
+        >
+          <button
+            onClick={buttonClick}
+            className="on-button"
+            style={{
+              backgroundColor: buttonOn ? "#1A8755" : "red",
+              color: "white",
+            }}
+          >
+            {buttonOn ? "ON" : "OFF"}
+          </button>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.querySelector(".root")).render(<App />);
+  </script>
+</html>

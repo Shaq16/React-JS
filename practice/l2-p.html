@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="root"></div>
+  </body>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        function LoginForm(){
+        return(
+            <div>
+                
+                <div><input placeholder="Email" size="20"/></div>
+                <input placeholder="Password" size="20"/>
+                <div>
+                    <button>Login</button> 
+                    <button>Sign Up</button>     
+                </div> 
+            </div>
+                
+            );
+
+        }
+        function Product({name,price,dp=0,image}){
+            if (dp){
+                if (image=="shirt"){
+                return(
+                    <div>
+                    <img src="shirt.png" alt="shirt" width="100" height="100"/>
+                    <p>{name}</p>
+                    <del>Price: ${price}</del>
+                    <p>Discount Price: ${dp}</p>
+                    <button>Add to Cart</button>
+                    </div>
+            ); 
+                }
+                else if(image=="socks"){
+                    return(
+                    <div>
+                    <img src="socks.png" alt="shirt" width="100" height="100"/>
+                    <p>{name}</p>
+                    <del>Price: ${price}</del>
+                    <p>Discount Price: ${dp}</p>
+                    <button>Add to Cart</button>
+                    </div>
+            );
+
+                }
+                else if (image=="balls"){
+                    return(
+                    <div>
+                    <img src="balls.png" alt="shirt" width="100" height="100"/>
+                    <p>{name}</p>
+                    <del>Price: ${price}</del>
+                    <p>Discount Price: ${dp}</p>
+                    <button>Add to Cart</button>
+                    </div>
+            );
+
+                }
+ 
+            }
+            else{
+             if (image=="shirt"){
+                return(
+                    <div>
+                    <img src="shirt.png" alt="shirt" width="100" height="100"/>
+                    <p>{name}</p>
+                    <p>Price: ${price}</p>
+                    <button>Add to Cart</button>
+                    </div>
+            ); 
+                }
+                else if(image=="socks"){
+                    return(
+                    <div>
+                    <img src="socks.png" alt="shirt" width="100" height="100"/>
+                    <p>{name}</p>
+                    <p>Price: ${price}</p>
+                    
+                    <button>Add to Cart</button>
+                    </div>
+            );
+
+                }
+                else if (image=="balls"){
+                    return(
+                    <div>
+                    <img src="balls.png" alt="shirt" width="100" height="100"/>
+                    <p>{name}</p>
+                    <p>Price: ${price}</p>
+                    
+                    <button>Add to Cart</button>
+                    </div>
+            );
+
+                }
+
+            }
+
+        }
+        // function App(){
+        //     return(
+        //         <>    <p>"Hello, welcome to my website"</p>
+        //               <LoginForm />
+        //         </>
+
+        //     );
+        // }
+
+        function App(){
+            return(
+                <>
+                <Product name="Cotton Socks" price={7.99} dp={5.99} image="socks"/>
+                <Product name="Tennis Ball" price={3.99} image="balls"/>
+                <Product name="Pants" price={5.99} dp={4.99} image="shirt"/>
+                
+                </>
+
+            );
+            
+
+        }
+      ReactDOM.createRoot(document.querySelector(".root")).render(<App />);
+    </script>
+</html>

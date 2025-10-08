@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+        body{
+            /* background-color: black; */
+        }
+    </style>
+  </head>
+  <body>
+    <div class="root"></div>
+  </body>
+
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+  <script type="text/babel">
+
+
+    function App() {
+        
+    const [inputText,setInputText]=React.useState("")
+    function text(e){
+        setInputText(e.target.value)
+    }
+
+    function example(){
+        setInputText("Alice")
+    }
+    function reset(){
+        setInputText("")
+
+    }
+
+    return(
+        <>
+            <input onChange={text}/>
+            <button onClick={reset}>Reset</button>
+            <button onClick={example}>Example</button>
+            <p>Hello {inputText}</p>
+        
+        </>
+    )
+
+
+    }
+
+    ReactDOM.createRoot(document.querySelector('.root')).render(<App />);
+  </script>
+</html>

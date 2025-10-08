@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Toggle Button</title>
+    <style>
+        body{
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:100vh;
+
+        }
+        .heading{
+            color:beige;
+        }
+        .login-container{
+
+        }
+        .email{
+            /* flex-grow: 1; */
+            display: flex;
+            margin:8px 0;
+            padding:5px;
+        }
+
+        .password{
+            margin-bottom:12px ;
+            padding:5px;
+        }
+
+        .login{
+            border:none;
+            border-radius: 5px; 
+            padding:10px;
+            margin-right:10px;
+            background-color: rgb(0, 136, 255);
+            cursor:pointer;
+        }
+
+        .sign-in{
+            border:none;
+            border-radius: 5px; 
+            padding:10px;
+            margin-right:10px;
+            background-color: rgb(0, 136, 255);
+            cursor:pointer;
+        }
+
+        .show-hide{
+            padding:5px;
+            margin-left:10px;
+            border-radius: 5px;
+            border:none;
+            cursor:pointer;
+        }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="root"></div>
+  </body>
+
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+  <script type="text/babel">
+    function App() {
+
+        const[inputState,setInputState]=React.useState(true)
+
+        function change(){
+            setInputState(!inputState)
+        }
+        return(
+        <div className="login-container">
+            <h3 className="heading">Welcome to our Website</h3>
+            <div>
+                <input placeholder="Email" className="email" type="email" />
+            </div>
+            <div>
+               <input placeholder="Password" className="password" type={inputState?"password":"text"} />
+               <button onClick={change} className="show-hide">{inputState?"Show":"Hide"}</button>
+            </div>
+            <div className="button-container">
+                <button className="login">Login</button>
+                <button className="sign-in">Sign In</button>   
+            </div>
+        </div>
+        )
+    }
+
+    ReactDOM.createRoot(document.querySelector(".root")).render(<App />);
+  </script>
+</html>
