@@ -1,73 +1,102 @@
 import { Header } from '../components/Header';
 import './HomePage.css'
 import { products } from '../../starting-code/data/products'
+import axios from 'axios'
+import { useEffect } from 'react';
+import { useEffect, useState } from "react";
 
 
 export function HomePage() {
-    return (
-        <>
-            <title>Home</title>
 
-            <Header />
-            <div className="home-page">
-                <div className="products-grid">
-                    {products.map((product) => {
-                        return (
-                            <>
-                                <div key={product.id} className="product-container">
-                                    <div className="product-image-container">
-                                        <img className="product-image"
-                                            src={product.image} />
-                                    </div>
+//   useEffect(() => {
+//     async function loadProducts() {
+//       try {
+//         const res = await fetch("http://localhost:3000/api/products");
+//         const data = await res.json();
+//         console.log("Fetched products:", data);
 
-                                    <div className="product-name limit-text-to-2-lines">
-                                        {product.name}
-                                    </div>
+//         // 👇 Adjust this depending on your API shape
+//         // If your API returns { products: [...] } — use data.products
+//         // If it returns [...] — use data
+//         setProducts(Array.isArray(data) ? data : data.products || []);
+//       } catch (err) {
+//         console.error("Error loading products:", err);
+//       }
+//     }
 
-                                    <div className="product-rating-container">
-                                        <img className="product-rating-stars"
-                                            src={`images/ratings/rating-${product.rating.stars * 10}.png`} />
-                                        <div className="product-rating-count link-primary">
-                                            {product.rating.count}
-                                        </div>
-                                    </div>
+//     loadProducts();
+//   }, []);
 
-                                    <div className="product-price">
-                                        Rs{product.priceCents}
-                                    </div>
+  const [products, setProducts] = useState([]);
 
-                                    <div className="product-quantity-container">
-                                        <select>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
-                                    </div>
+    useEffect(()=>{
+        axios.get("http://localhost:3000/api/products").then((res)=>{
+        setProducts(res.data)
+    })
 
-                                    <div className="product-spacer"></div>
+    }, [])
 
-                                    <div className="added-to-cart">
-                                        <img src="images/icons/checkmark.png" />
-                                        Added
-                                    </div>
 
-                                    <button className="add-to-cart-button button-primary">
-                                        Add to Cart
-                                    </button>
-                                </div>
+  return (
+    <>
+      <title>Home</title>
 
-                            </>
-                        )
-                    })}
+      <Header />
+      <div className="home-page">
+        <div className="products-grid">
+          {products.map((product) => (
+            <div key={product.id} className="product-container">
+              <div className="product-image-container">
+                <img
+                  className="product-image"
+                  src={product.image}
+                  alt={product.name}
+                />
+              </div>
+
+              <div className="product-name limit-text-to-2-lines">
+                {product.name}
+              </div>
+
+              <div className="product-rating-container">
+                <img
+                  className="product-rating-stars"
+                  src={`images/ratings/rating-${
+                    product.rating?.stars * 10
+                  }.png`}
+                  alt="rating"
+                />
+                <div className="product-rating-count link-primary">
+                  {product.rating?.count}
                 </div>
+              </div>
+
+              <div className="product-price">Rs {product.priceCents}</div>
+
+              <div className="product-quantity-container">
+                <select>
+                  {[...Array(10)].map((_, i) => (
+                    <option key={i + 1} value={i + 1}>
+                      {i + 1}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="product-spacer"></div>
+
+              <div className="added-to-cart">
+                <img src="images/icons/checkmark.png" alt="added" />
+                Added
+              </div>
+
+              <button className="add-to-cart-button button-primary">
+                Add to Cart
+              </button>
             </div>
-        </>
-    );
+          ))}
+        </div>
+      </div>
+    </>
+  );
 }
