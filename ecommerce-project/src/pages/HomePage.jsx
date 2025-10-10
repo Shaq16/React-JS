@@ -2,7 +2,7 @@ import { Header } from '../components/Header';
 import './HomePage.css'
 import { products } from '../../starting-code/data/products'
 import axios from 'axios'
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useEffect, useState } from "react";
 
 
@@ -28,20 +28,24 @@ export function HomePage() {
 //   }, []);
 
   const [products, setProducts] = useState([]);
+  const [cart,setCart]=useState([])
 
     useEffect(()=>{
         axios.get("http://localhost:3000/api/products").then((res)=>{
         setProducts(res.data)
     })
-
     }, [])
+
+    axios.get('http://localhost:3000/api/cart-items').then((response)=>{
+        setCart(response.data)
+    })
 
 
   return (
     <>
       <title>Home</title>
 
-      <Header />
+      <Header cart={cart}/>
       <div className="home-page">
         <div className="products-grid">
           {products.map((product) => (
