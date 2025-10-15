@@ -36,9 +36,12 @@ export function HomePage() {
     })
     }, [])
 
-    axios.get('/api/cart-items').then((response)=>{
-        setCart(response.data)
-    })
+    useEffect(()=>{
+        axios.get('/api/cart-items').then((res)=>{
+        setCart(res.data)
+      })
+    },[])
+
 
 
   return (
