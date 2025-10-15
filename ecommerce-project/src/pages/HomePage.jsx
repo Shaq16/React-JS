@@ -6,7 +6,7 @@ import axios from 'axios'
 import { useEffect, useState } from "react";
 
 
-export function HomePage() {
+export function HomePage({cart}) {
 
 //   useEffect(() => {
 //     async function loadProducts() {
@@ -27,22 +27,13 @@ export function HomePage() {
 //     loadProducts();
 //   }, []);
 
-  const [products, setProducts] = useState([]);
-  const [cart,setCart]=useState([])
 
+  const [products, setProducts] = useState([]);
     useEffect(()=>{
         axios.get("/api/products").then((res)=>{
         setProducts(res.data)
     })
     }, [])
-
-    useEffect(()=>{
-        axios.get('/api/cart-items').then((res)=>{
-        setCart(res.data)
-      })
-    },[])
-
-
 
   return (
     <>
